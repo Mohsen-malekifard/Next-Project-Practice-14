@@ -1,16 +1,22 @@
 import { useState } from "react";
 
 export default function ProductList() {
-  const [products, setProducts] = useState([
+  const initialProducts = [
     { id: 1, name: "لپ‌تاپ", price: 100 },
     { id: 2, name: "گوشی", price: 200 },
     { id: 3, name: "تبلت", price: 300 },
-  ]);
+  ];
+
+  const [products, setProducts] = useState(initialProducts);
 
   return (
     <div>
       <button onClick={() => setProducts(products.filter((p) => p.price > 150))}>
         فقط قیمت‌های بالای ۱۵۰
+      </button>
+
+      <button onClick={() => setProducts(initialProducts)}>
+        نمایش همه
       </button>
 
       <ul>
