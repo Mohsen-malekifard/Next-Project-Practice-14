@@ -1,17 +1,21 @@
-import {useState} from "react";
+import { useState } from "react";
 
 export default function NameForm() {
   const [name, setName] = useState("");
-  const [isClicked , setIsClicked] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+
   function handlerSubmit(e) {
-    e.preventDefault;
+    e.preventDefault();
+    setIsClicked(true);
   }
+
   return (
-    <form onSubmit = {handlerSubmit} >
-      <input onChange = {(e) => setName(e.target.value)} />
-      <button onClick = {setIsClicked(true)} type = "Submit" >Submit</button>
-    </form>
-    
-  )
-    
+    <div>
+      <form onSubmit={handlerSubmit}>
+        <input onChange={(e) => setName(e.target.value)} />
+        <button type="submit">Submit</button>
+      </form>
+      {isClicked && <h1>{name}</h1>}
+    </div>
+  );
 }
