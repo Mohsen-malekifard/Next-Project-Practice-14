@@ -26,6 +26,9 @@ export default function ProductList() {
             <span style={{ color: p.price > 150 ? "red" : "black" }}>
               {p.price} دلار
             </span>
+            <button onClick={() => setProducts(products.filter((b) => b.id !== p.id))}>
+              حذف
+            </button>
           </li>
         ))}
       </ul>
