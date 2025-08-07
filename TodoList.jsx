@@ -3,15 +3,20 @@ import { useState } from "react";
 export default function TodoList() {
   const [todos, setTodos] = useState([]);     // لیست todo‌ها
   const [text, setText] = useState("");       // مقدار input
-  const [isClicked, setIsClicked] = useState(false);  // کنترل نمایش لیست
+  const [isClicked, setIsClicked] = useState(false);  // نمایش لیست
 
   function handleSubmit(e) {
     e.preventDefault();
     if (text.trim() !== "") {
-      setTodos([...todos, text]);  // اضافه کردن متن جدید به لیست
-      setText("");                 // خالی کردن input بعد از ثبت
-      setIsClicked(true);         // نمایش لیست
+      setTodos([...todos, text]);
+      setText("");
+      setIsClicked(true);
     }
+  }
+
+  function handleClear() {
+    setTodos([]);        // پاک کردن کل لیست
+    setIsClicked(false); // مخفی کردن لیست
   }
 
   return (
@@ -26,11 +31,14 @@ export default function TodoList() {
       </form>
 
       {isClicked && (
-        <ul>
-          {todos.map((t, index) => (
-            <li key={index}>{t}</li>
-          ))}
-        </ul>
+        <>
+          <ul>
+            {todos.map((t, index) => (
+              <li key={index}>{t}</li>
+            ))}
+          </ul>
+          <button onClick={handleClear}>🗑 حذف همه کارها</button>
+        </>
       )}
     </>
   );
